@@ -15,6 +15,8 @@ The Client UI is instantiated by Blueprint where it is also given a reference to
 
 The StockMarket implementation calls out to Yahoo Finance to retrieve quotes.
 
+---
+
 ## Modules
 * __api__ : Java Interfaces for the Stock Market
 * __impl__ : Implementations. Currently only one based on Yahoo Finance REST call
@@ -24,6 +26,17 @@ The StockMarket implementation calls out to Yahoo Finance to retrieve quotes.
 * __assembly__ : Create Karaf assembly preconfigured with Stock application
 
 
+
+## Important Files
+* __api/src/main/java/org/pentaho/karaf/examples/stock/IStockMarket.java__ : API Interface to the StockMarket
+* __impl/src/main/java/org/pentaho/karaf/examples/stock/impl/StockMarket.java__ : Yahoo Implementation of IStockMarket
+* __impl/src/main/resources/OSGI-INF/blueprint/beans.xml__ : Blueprint XML file where implementation is registered
+* __client/src/main/resources/OSGI-INF/blueprint/beans.xml__ : Blueprint XML file where UI is constructed and wired to the Yahoo implementation
+* __feature/pom.xml__ : Karaf Feature xml built by karaf-maven-plugin
+* __assembly/pom.xml__ : Karaf Assembly built by karaf-maven-plugin
+
+---
+
 ## Building the Example
 ### Prerequisites
 1. Maven must be installed and available to the command-line interface
@@ -32,6 +45,8 @@ __Build with Maven__
 
 1. Open a command-line and navigate to this directory on your filesystem
 2. Execute `mvn install`
+
+---
 
 ## Running the example
 
@@ -53,15 +68,7 @@ the Sock feature can be deployed into any Karaf container.
 1. From the command-line navigate to stock/assembly/target/assembly
 2. Execute `./bin/karaf`
 
-
-## Important Files
-* __api/src/main/java/org/pentaho/karaf/examples/stock/IStockMarket.java__ : API Interface to the StockMarket
-* __impl/src/main/java/org/pentaho/karaf/examples/stock/impl/StockMarket.java__ : Yahoo Implementation of IStockMarket
-* __impl/src/main/resources/OSGI-INF/blueprint/beans.xml__ : Blueprint XML file where implementation is registered
-* __client/src/main/resources/OSGI-INF/blueprint/beans.xml__ : Blueprint XML file where UI is constructed and wired to the Yahoo implementation
-* __feature/pom.xml__ : Karaf Feature xml built by karaf-maven-plugin
-* __assembly/pom.xml__ : Karaf Assembly built by karaf-maven-plugin
-
+---
 
 ## Developing and Debugging
 If you're running from the generated assembly you'll need to delete the packaged 
@@ -92,6 +99,8 @@ setup Karaf to "watch" the bundles you're working with. Karaf will automatically
 1. After starting Karaf identify the Bundle IDs with `list`
 2. Execute `bundle:watch XX` for each of the bundles you're working on
 3. Continue to develop and install your bundles into Maven
+
+---
 
 ## Make some changes
 ### Implement Error Handling

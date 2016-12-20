@@ -30,6 +30,7 @@ Components are instantiated and wired together using Blueprint XML files.
 1. Maven must be installed and available to the command-line interface
 
 __Build with Maven__
+
 1. Open a command-line and navigate to this directory on your filesystem
 2. Execute `mvn install`
 
@@ -46,10 +47,8 @@ the Sock feature can be deployed into any Karaf container.
 3. Start Karaf and enter the Shell by executing "bin/karaf"
 
 ### Install Feature
-
-Execute the following commands
-1. `feature:repo-add mvn:pentaho.karaf.examples.stock/stock-feature/1.0-SNAPSHOT/xml/features`
-2. `feature:install stock-feature`
+1. Execute `feature:repo-add mvn:pentaho.karaf.examples.stock/stock-feature/1.0-SNAPSHOT/xml/features`
+2. Execute `feature:install stock-feature`
 
 ### Run the Assembly
 1. From the command-line navigate to stock/assembly/target/assembly
@@ -57,18 +56,12 @@ Execute the following commands
 
 
 ## Important Files
-* __api/src/main/java/org/pentaho/karaf/examples/stock/IStockMarket.java__ : 
-API Interface to the StockMarket
-* __impl/src/main/java/org/pentaho/karaf/examples/stock/impl/StockMarket.java__ : 
-Yahoo Implementation of IStockMarket
-* __impl/src/main/resources/OSGI-INF/blueprint/beans.xml__ : 
-Blueprint XML file where implementation is registered
-* __client/src/main/resources/OSGI-INF/blueprint/beans.xml__ : 
-Blueprint XML file where UI is constructed and wired to the Yahoo implementation
-* __feature/pom.xml__ : 
-Karaf Feature xml built by karaf-maven-plugin
-* __assembly/pom.xml__ : 
-Karaf Assembly built by karaf-maven-plugin
+* __api/src/main/java/org/pentaho/karaf/examples/stock/IStockMarket.java__ : API Interface to the StockMarket
+* __impl/src/main/java/org/pentaho/karaf/examples/stock/impl/StockMarket.java__ : Yahoo Implementation of IStockMarket
+* __impl/src/main/resources/OSGI-INF/blueprint/beans.xml__ : Blueprint XML file where implementation is registered
+* __client/src/main/resources/OSGI-INF/blueprint/beans.xml__ : Blueprint XML file where UI is constructed and wired to the Yahoo implementation
+* __feature/pom.xml__ : Karaf Feature xml built by karaf-maven-plugin
+* __assembly/pom.xml__ : Karaf Assembly built by karaf-maven-plugin
 
 
 ## Developing and Debugging
@@ -88,6 +81,7 @@ will be used.
 4. `mvn install` the affected bundle
 
 *"update" the changed bundle from within Karaf console:*
+
 5. This involves first finding the Bundle ID of your bundle by executing `list`
 6. Update your changed bundle via `update XX`
 
@@ -95,6 +89,7 @@ will be used.
 Karaf can automate the process of updating bundles. Before making your changes, 
 setup Karaf to "watch" the bundles you're working with. Karaf will automatically 
 "udpate" your bundles whenever you "mvn install" them.
+
 1. After starting Karaf identify the Bundle IDs with `list`
 2. Execute `bundle:watch XX` for each of the bundles you're working on
 3. Continue to develop and install your bundles into Maven
@@ -103,10 +98,9 @@ setup Karaf to "watch" the bundles you're working with. Karaf will automatically
 ### Implement Error Handling
 
 You'll notice that the StockMarket class contains no error handling. 
-1. Extend the 
-API with a custom Exception
-2. Modify the getQuote() method in the IStockMarket interface to throw this new
-Exception
+
+1. Extend the API with a custom Exception Class
+2. Modify the getQuote() method in the IStockMarket interface to throw this new Exception
 3. Implement error handling in StockMarket implementation and the SwingStockQuoteClient UI
 
 ### Sweeten the UI

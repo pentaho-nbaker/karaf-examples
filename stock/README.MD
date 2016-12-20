@@ -3,18 +3,17 @@
 This Karaf Example illustrates common architectural patterns and technologies
 in use at Pentaho
 * __API/Impl split__ - Clients depend on API only, Implementations are managed by OSGI
-* __Blueprint__ - Bundles wired-up with Blueprint Beans. No OSGI APIs in project code
-* __Configuration__ - Using the Configuration Admin of OSGI
+* __Blueprint__ - Bundles wired-up with Blueprint Beans, our IOC container of choice. Usage of Blueprint keeps OSGI APIs away from project code. The result if far more testable code
+* __Configuration__ - Using the Configuration Admin of OSGI. Configurations are also injected into the project classes, similar to class impls
 
 ## What does it do?
 When activated a Swing window is opened which allows you to retrive the current asking 
 price for any stock symbol.
 
 ## Basic Architecture ##
-The Client UI is given a reference to the StockMarket implementation of the IStockMarket Interface. 
-This implementation calls out to Yahoo Finance to retrieve the quote.
+The Client UI is instantiated by Blueprint where it is also given a reference to the StockMarket implementation from the "impl" bundle.
 
-Components are instantiated and wired together using Blueprint XML files.
+The StockMarket implementation calls out to Yahoo Finance to retrieve quotes.
 
 ## Modules
 * __api__ : Java Interfaces for the Stock Market

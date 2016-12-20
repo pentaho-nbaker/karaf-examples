@@ -26,7 +26,7 @@ Components are instantiated and wired together using Blueprint XML files.
 
 
 ## Building the Example
-__Prerequisites__
+### Prerequisites
 1. Maven must be installed and available to the command-line interface
 
 __Build with Maven__
@@ -35,23 +35,23 @@ __Build with Maven__
 
 ## Running the example
 
-__Install Feature manually into Karaf__
+### Install Feature manually into Karaf
 
 Now that you've successfully built and installed the artifacts to your local Maven repository 
 the Sock feature can be deployed into any Karaf container.
 
-__Start Karaf__
+### Start Karaf
 1. Download latest version of Karaf 4.x: http://karaf.apache.org/download.html
 2. Open a command-line and navigate to the Karaf directory.
 3. Start Karaf and enter the Shell by executing "bin/karaf"
 
-__Install Feature__
+### Install Feature
 
 Execute the following commands
 1. `feature:repo-add mvn:pentaho.karaf.examples.stock/stock-feature/1.0-SNAPSHOT/xml/features`
 2. `feature:install stock-feature`
 
-__Run the Assembly__
+### Run the Assembly
 1. From the command-line navigate to stock/assembly/target/assembly
 2. Execute `./bin/karaf`
 
@@ -78,10 +78,10 @@ from your local Maven cache. If this is not done your
 local development changes will never go into effect as the packaged versions 
 will be used.
 
-__Delete the Packaged Bundles__
+### Delete the Packaged Bundles
 1. Delete the $KARAF_HOME/system/pentaho directory
 
-__Standard Development Flow__
+### Standard Development Flow
 1. Start Karaf in debug mode: `./bin/karaf debug`
 2. Attach your IDE to the standard 5005 debug port.
 3. Make changes to a bundle
@@ -91,7 +91,7 @@ __Standard Development Flow__
 5. This involves first finding the Bundle ID of your bundle by executing `list`
 6. Update your changed bundle via `update XX`
 
-__Bundle:Watch Flow__
+### Bundle:Watch Flow
 Karaf can automate the process of updating bundles. Before making your changes, 
 setup Karaf to "watch" the bundles you're working with. Karaf will automatically 
 "udpate" your bundles whenever you "mvn install" them.
@@ -99,8 +99,8 @@ setup Karaf to "watch" the bundles you're working with. Karaf will automatically
 2. Execute `bundle:watch XX` for each of the bundles you're working on
 3. Continue to develop and install your bundles into Maven
 
-### Make some changes
-__Implement Error Handling__
+## Make some changes
+### Implement Error Handling
 
 You'll notice that the StockMarket class contains no error handling. 
 1. Extend the 
@@ -109,6 +109,6 @@ API with a custom Exception
 Exception
 3. Implement error handling in StockMarket implementation and the SwingStockQuoteClient UI
 
-__Sweeten the UI__
+### Sweeten the UI
 
 The UI certainly could be better, make some adjustments.

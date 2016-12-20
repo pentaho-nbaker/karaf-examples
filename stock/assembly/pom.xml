@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>pentaho.karaf.examples.stock</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>karaf-assembly</packaging>
+
+    <artifactId>stock-assembly</artifactId>
+
+    <dependencies>
+        <!--  base framework kar -->
+        <dependency>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>framework</artifactId>
+            <version>4.0.7</version>
+            <type>kar</type>
+        </dependency>
+
+        <!-- the following are feature files supporting the build configuration -->
+
+        <dependency>
+            <!-- scope is runtime so the feature repo is listed in etc/org.apache.karaf.features.cfg file, and features will installed into the system directory if specify in the plugin configuration -->
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>standard</artifactId>
+            <classifier>features</classifier>
+            <version>4.0.7</version>
+            <type>xml</type>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>enterprise</artifactId>
+            <classifier>features</classifier>
+            <version>4.0.7</version>
+            <type>xml</type>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>pentaho.karaf.examples.stock</groupId>
+            <artifactId>stock-feature</artifactId>
+            <type>xml</type>
+            <classifier>features</classifier>
+            <version>1.0-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Uncomment these two if testing Startup Features -->
+        <!--<dependency>-->
+            <!--&lt;!&ndash; scope is compile to support Startup Features &ndash;&gt;-->
+            <!--<groupId>org.apache.karaf.features</groupId>-->
+            <!--<artifactId>standard</artifactId>-->
+            <!--<classifier>features</classifier>-->
+            <!--<version>4.0.7</version>-->
+            <!--<type>xml</type>-->
+            <!--<scope>compile</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>pentaho.karaf.examples.stock</groupId>-->
+            <!--<artifactId>stock-feature</artifactId>-->
+            <!--<type>xml</type>-->
+            <!--<classifier>features</classifier>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+            <!--<scope>compile</scope>-->
+        <!--</dependency>-->
+    </dependencies>
+
+    <build>
+        <!-- if you want to include resources in the distribution -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/filtered-resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <!-- if you want to include resources in the distribution -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>process-resources</id>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.karaf.tooling</groupId>
+                <artifactId>karaf-maven-plugin</artifactId>
+                <version>4.0.7</version>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>karaf-assembly</id>
+                        <goals>
+                            <goal>assembly</goal>
+                        </goals>
+                        <phase>install</phase>
+                    </execution>
+                    <execution>
+                        <id>karaf-archive</id>
+                        <goals>
+                            <goal>archive</goal>
+                        </goals>
+                        <phase>install</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <startupFeatures>
+                        <!-- Startup Features are put in the startup.properties where the bundles are started by bare framework install. This
+                             is much faster than feature install. Try moving aries-blueprint and stock-feature here and uncommenting the
+                             feature dependencies above
+                         -->
+                    </startupFeatures>
+                    <bootFeatures>
+                        <!-- Boot Features are intalled by the feature system, Entries are put in etc/org.apache.karaf.features.cfg -->
+                        <feature>aries-blueprint</feature>
+                        <feature>stock-feature</feature>
+
+                        <!-- features below this are there to support debugging -->
+                        <feature>shell</feature>
+                        <feature>config</feature>
+                        <feature>diagnostic</feature>
+                        <feature>log</feature>
+                        <feature>service</feature>
+                        <feature>bundle</feature>
+                        <feature>system</feature>
+                        <feature>feature</feature>
+                    </bootFeatures>
+                    <installedFeatures>
+                        <!-- Features listed here have their artifacts placed in the /system directory and can be installed at runtime.
+                             If you move stock-feature here it's artifacts will be available in the assembly and it can be installed from the
+                             shell with "feature:install stock-feature"
+                         -->
+                    </installedFeatures>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+
+</project>

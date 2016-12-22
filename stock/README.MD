@@ -28,9 +28,9 @@ The Client UI is instantiated by Blueprint where it is also given reference to a
 
 ## Important Files
 * [IStockMarket.java](api/src/main/java/org/pentaho/karaf/examples/stock/IStockMarket.java) : API Interface to the StockMarket
-* [YahooStockMarket](impl/yahoo/src/main/java/org/pentaho/karaf/examples/stock/yahoo/YahooStockMarket.java) : Yahoo Implementation of IStockMarket
-* [GoogleStockMarket](impl/google/src/main/java/org/pentaho/karaf/examples/stock/google/GoogleStockMarket.java) : Google Implementation of IStockMarket
-* [Yahoo Blueprint](impl/yahoo/src/main/resources/OSGI-INF/blueprint/beans.xml) / [Google Blueprint](impl/google/src/main/resources/OSGI-INF/blueprint/beans.xml) : Blueprint XML filea where implementations are registered
+* [YahooStockMarket](impls/yahoo/src/main/java/org/pentaho/karaf/examples/stock/yahoo/YahooStockMarket.java) : Yahoo Implementation of IStockMarket
+* [GoogleStockMarket](impls/google/src/main/java/org/pentaho/karaf/examples/stock/google/GoogleStockMarket.java) : Google Implementation of IStockMarket
+* [Yahoo Blueprint](impls/yahoo/src/main/resources/OSGI-INF/blueprint/beans.xml) / [Google Blueprint](impls/google/src/main/resources/OSGI-INF/blueprint/beans.xml) : Blueprint XML filea where implementations are registered
 * [Client Blueprint](client/src/main/resources/OSGI-INF/blueprint/beans.xml) : Blueprint XML file where UI is constructed and wired to the implementations
 * [Feature Build](feature/pom.xml) : Karaf Feature xml built by karaf-maven-plugin
 * [Assembly Build](assembly/pom.xml) : Karaf Assembly built by karaf-maven-plugin

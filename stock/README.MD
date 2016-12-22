@@ -3,39 +3,37 @@
 This Karaf Example illustrates common architectural patterns and technologies
 in use at Pentaho
 * __API/Impl split__ - Clients depend on API only, Implementations are managed by OSGI
-* __Blueprint__ - Bundles wired-up with Blueprint Beans, our IOC container of choice. Usage of Blueprint keeps OSGI APIs away from project code. The result if far more testable code
-* __Configuration__ - Using the Configuration Admin of OSGI. Configurations are also injected into the project classes, similar to class impls
+* __Blueprint__ - Bundles wired-up with Blueprint Beans, our IOC container of choice. Usage of Blueprint keeps OSGI APIs away from project code. IOC managed code is much easier to test.
+* __Configuration__ - Using the Configuration Admin of OSGI. Configurations are injected into the project classes via the Blueprint IOC. Multiple options exist and are highlighted
 
 Travis CI Build: https://travis-ci.org/pentaho-nbaker/karaf-examples
 
 ## What does it do?
-When activated a Swing window is opened which allows you to retrive the current asking 
+When activated a Swing window is shown which allows the retrival of the current asking 
 price for any stock symbol.
 
 ## Basic Architecture ##
-The Client UI is instantiated by Blueprint where it is also given a reference to the StockMarket implementation from the "impl" bundle.
-
-The StockMarket implementation calls out to Yahoo Finance to retrieve quotes.
+The Client UI is instantiated by Blueprint where it is also given reference to any IStockMarket implementations registered from "impl" bundle. There are currently two implementations: Yahoo and Google
 
 ---
 
 ## Modules
 * __api__ : Java Interfaces for the Stock Market
-* __impl__ : Implementations. Currently only one based on Yahoo Finance REST call
-* __client__ : Swing-based UI working with the Stock Market
-* __tests__ : PAX-Exam tests feature in real Karaf from within JUnit
-* __feature__ : Stock application can be deployed into any Karaf container easily
-* __assembly__ : Create Karaf assembly preconfigured with Stock application
-
+* __impl__ : Implementations. Currently two: Yahoo and Google
+* __client__ : Swing-based UI working with the Stock Markets
+* __tests__ : Bundles are tested within a real Karaf container via PAX-Exam
+* __feature__ : Produces a Karaf Feature which allow the application to be deployed in any Karaf container
+* __assembly__ : Produces a Karaf assembly preconfigured with Stock application
 
 
 ## Important Files
-* __api/src/main/java/org/pentaho/karaf/examples/stock/IStockMarket.java__ : API Interface to the StockMarket
-* __impl/src/main/java/org/pentaho/karaf/examples/stock/impl/StockMarket.java__ : Yahoo Implementation of IStockMarket
-* __impl/src/main/resources/OSGI-INF/blueprint/beans.xml__ : Blueprint XML file where implementation is registered
-* __client/src/main/resources/OSGI-INF/blueprint/beans.xml__ : Blueprint XML file where UI is constructed and wired to the Yahoo implementation
-* __feature/pom.xml__ : Karaf Feature xml built by karaf-maven-plugin
-* __assembly/pom.xml__ : Karaf Assembly built by karaf-maven-plugin
+* [IStockMarket.java](api/src/main/java/org/pentaho/karaf/examples/stock/IStockMarket.java) : API Interface to the StockMarket
+* [YahooStockMarket](impl/yahoo/src/main/java/org/pentaho/karaf/examples/stock/yahoo/YahooStockMarket.java) : Yahoo Implementation of IStockMarket
+* [GoogleStockMarket](impl/google/src/main/java/org/pentaho/karaf/examples/stock/google/GoogleStockMarket.java) : Google Implementation of IStockMarket
+* [Yahoo Blueprint](impl/yahoo/src/main/resources/OSGI-INF/blueprint/beans.xml) / [Google Blueprint](impl/google/src/main/resources/OSGI-INF/blueprint/beans.xml) : Blueprint XML filea where implementations are registered
+* [Client Blueprint](client/src/main/resources/OSGI-INF/blueprint/beans.xml) : Blueprint XML file where UI is constructed and wired to the implementations
+* [Feature Build](feature/pom.xml) : Karaf Feature xml built by karaf-maven-plugin
+* [Assembly Build](assembly/pom.xml) : Karaf Assembly built by karaf-maven-plugin
 
 ---
 
@@ -79,7 +77,7 @@ From the command-line navigate to stock/assembly/target/assembly. Execute the fo
 
 ## Developing and Debugging
 If you're running from the generated assembly, delete the packaged 
-artifacts within the karaf/system directory. This will ensure Karaf will load these bundles 
+artifacts within the karaf/system directory. This will ensure Karaf loads these bundles 
 from your local Maven cache. If this is not done your 
 local development changes will never go into effect as the packaged versions 
 will always be used.
@@ -93,7 +91,7 @@ will always be used.
 3. Make changes to a bundle
 4. `mvn install` the affected bundle
 
-At this point you can shutdown and restart Karaf and your changes will be loaded on next start. However, it's far nicer to take advantage of the ability of OSGI to reload bundles without restart. 
+At this point you can shutdown and restart Karaf and your changes will be loaded on next start. However, it's far nicer to take advantage of the ability of OSGI to reload bundles without restart. You also never have to restart your debugging session!
 
 5. Switch to the Karaf Shell
 6. Find the ID of the bundle you're working with by executing `list`

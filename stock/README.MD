@@ -61,21 +61,26 @@ the Sock feature can be deployed into any Karaf container.
 3. Start Karaf and enter the Shell by executing "bin/karaf"
 
 ### Install Feature
-1. Execute `feature:repo-add mvn:pentaho.karaf.examples.stock/stock-feature/1.0-SNAPSHOT/xml/features`
-2. Execute `feature:install stock-feature`
+Execute the following in the Karaf Shell
+```
+feature:repo-add mvn:pentaho.karaf.examples.stock/stock-feature/1.0-SNAPSHOT/xml/features
+feature:install stock-feature
+```
 
 ### Run the Assembly
-1. From the command-line navigate to stock/assembly/target/assembly
-2. Execute `./bin/karaf`
+From the command-line navigate to stock/assembly/target/assembly. Execute the following:
+```
+./bin/karaf
+```
 
 ---
 
 ## Developing and Debugging
-If you're running from the generated assembly you'll need to delete the packaged 
-artifacts within the karaf/system directory. This way Karaf will load these bundles 
+If you're running from the generated assembly, delete the packaged 
+artifacts within the karaf/system directory. This will ensure Karaf will load these bundles 
 from your local Maven cache. If this is not done your 
 local development changes will never go into effect as the packaged versions 
-will be used.
+will always be used.
 
 ### Delete the Packaged Bundles
 1. Delete the $KARAF_HOME/system/pentaho directory
@@ -86,14 +91,15 @@ will be used.
 3. Make changes to a bundle
 4. `mvn install` the affected bundle
 
-*"update" the changed bundle from within Karaf console:*
+At this point you can shutdown and restart Karaf and your changes will be loaded on next start. However, it's far nicer to take advantage of the ability of OSGI to reload bundles without restart. 
 
-5. This involves first finding the Bundle ID of your bundle by executing `list`
-6. Update your changed bundle via `update XX`
+5. Switch to the Karaf Shell
+6. Find the ID of the bundle you're working with by executing `list`
+7. Update your changed bundle with the `update XX` command
 
 ### Bundle:Watch Flow
 Karaf can automate the process of updating bundles. Before making your changes, 
-setup Karaf to "watch" the bundles you're working with. Karaf will automatically 
+setup Karaf to "watch" the bundles you're working on. Karaf will automatically 
 "udpate" your bundles whenever you "mvn install" them.
 
 1. After starting Karaf identify the Bundle IDs with `list`

@@ -6,6 +6,8 @@ in use at Pentaho
 * __Blueprint__ - Bundles wired-up with Blueprint Beans, our IOC container of choice. Usage of Blueprint keeps OSGI APIs away from project code. The result if far more testable code
 * __Configuration__ - Using the Configuration Admin of OSGI. Configurations are also injected into the project classes, similar to class impls
 
+Travis CI Build: https://travis-ci.org/pentaho-nbaker/karaf-examples
+
 ## What does it do?
 When activated a Swing window is opened which allows you to retrive the current asking 
 price for any stock symbol.

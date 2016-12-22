@@ -2,15 +2,19 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <groupId>pentaho.karaf.examples.stock</groupId>
+    <artifactId>stock-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../</relativePath>
+  </parent>
+  <artifactId>impls</artifactId>
   <modelVersion>4.0.0</modelVersion>
-
-  <groupId>pentaho.karaf.examples</groupId>
-  <artifactId>parent</artifactId>
-  <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
-    <module>stock</module>
+    <module>yahoo</module>
+    <module>google</module>
   </modules>
 
 </project>

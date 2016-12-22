@@ -5,11 +5,11 @@ package org.pentaho.karaf.examples.stock;
  */
 public interface IStockMarket {
 
-    /**
-     * Get the current asking price for the given stock
-     *
-     * @param symbl
-     * @return current asking price of stock
-     */
-    Double getStockPrice( String symbl );
+  /**
+   * Get the current asking price for the given stock
+   *
+   * @param symbl
+   * @return current asking price of stock
+   */
+  Double getStockPrice( String symbl );
 }

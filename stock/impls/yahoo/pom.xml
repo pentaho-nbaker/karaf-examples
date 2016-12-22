@@ -3,15 +3,28 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
-    <artifactId>stock-parent</artifactId>
     <groupId>pentaho.karaf.examples.stock</groupId>
+    <artifactId>impls</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <relativePath>../</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <packaging>bundle</packaging>
 
-  <artifactId>client</artifactId>
+  <artifactId>stock-yahoo</artifactId>
+
   <dependencies>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>pentaho.karaf.examples.stock</groupId>
+      <artifactId>api</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
     <dependency>
       <groupId>pentaho.karaf.examples.stock</groupId>
       <artifactId>api</artifactId>
@@ -31,6 +44,8 @@
           <instructions>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Bundle-Version>${project.version}</Bundle-Version>
+            <!-- Impls should expose no packages -->
+            <!--<Private-Package>*</Private-Package>-->
           </instructions>
         </configuration>
       </plugin>

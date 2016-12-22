@@ -1,8 +1,4 @@
 language: java
 jdk:
   - oraclejdk8
-script: mvn install
-
-env:
-  - JAVA_OPTS="-Djava.awt.headless=true"
-  - MAVEN_OPTS="-Djava.awt.headless=true"
+script: mvn install -Djava.awt.headless=true

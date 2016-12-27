@@ -55,12 +55,12 @@ __Build with Maven__
 Now that you've successfully built and installed the artifacts to your local Maven repository 
 the Sock feature can be deployed into any Karaf container.
 
-### Start Karaf
+#### Start Karaf
 1. Download latest version of Karaf 4.x: http://karaf.apache.org/download.html
 2. Open a command-line and navigate to the Karaf directory.
 3. Start Karaf and enter the Shell by executing "bin/karaf"
 
-### Install Feature
+#### Install Feature
 Execute the following in the Karaf Shell
 ```
 feature:repo-add mvn:pentaho.karaf.examples.stock/stock-feature/1.0-SNAPSHOT/xml/features
@@ -68,7 +68,7 @@ feature:install stock-feature
 ```
 
 ### Run the Assembly
-From the command-line navigate to stock/assembly/target/assembly. Execute the following:
+The "assembly" module produces an Apache Karaf build pre-configured with the stock feature. From the command-line navigate to stock/assembly/target/assembly. Execute the following:
 ```
 ./bin/karaf
 ```
@@ -76,11 +76,9 @@ From the command-line navigate to stock/assembly/target/assembly. Execute the fo
 ---
 
 ## Developing and Debugging
-If you're running from the generated assembly, delete the packaged 
-artifacts within the karaf/system directory. This will ensure Karaf loads these bundles 
-from your local Maven cache. If this is not done your 
-local development changes will never go into effect as the packaged versions 
-will always be used.
+Our Karaf features all use Maven URLs as pointers to the artifacts (bundles, config, blueprint xml, etc). The advantage to developers is Karaf will pick-up new versions of these artifacts from your local Maven repository (~/.m2/repository). Developing is as simple as executing `mvn install` on the changed artifacts.
+
+There's one big caviet here. If the Karaf assembly already has a version of the artifact in it's local maven repository ($KARAF_HOME/system), it will always use this pre-packaged artifact. So the first thing you'll need to do as you begin developing is to delete these pre-packaged artifacts.
 
 ### Delete the Packaged Bundles
 1. Delete the $KARAF_HOME/system/pentaho directory
@@ -99,16 +97,18 @@ At this point you can shutdown and restart Karaf and your changes will be loaded
 
 ### Bundle:Watch Flow
 Karaf can automate the process of updating bundles. Before making your changes, 
-setup Karaf to "watch" the bundles you're working on. Karaf will automatically 
+tell Karaf to "watch" the bundles you're working on. Karaf will automatically 
 "udpate" your bundles whenever you "mvn install" them.
 
 1. After starting Karaf identify the Bundle IDs with `list`
 2. Execute `bundle:watch XX` for each of the bundles you're working on
-3. Continue to develop and install your bundles into Maven
+3. Continue to develop and execute `mvn install` whenever you want to deploy the new artifacts into Karaf
 
 ---
 
 ## Make some changes
+Get your feet wet developing with Karaf by extending this example. You'll find some ideas to get you started below.
+
 ### Implement Error Handling
 
 You'll notice that the StockMarket class contains no error handling. 

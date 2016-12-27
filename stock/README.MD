@@ -3,17 +3,17 @@
 This Karaf Example illustrates common architectural patterns and technologies
 in use at Pentaho
 * __API/Impl split__ - Clients depend on API only, Implementations are managed by OSGI
-* __Blueprint__ - Bundles wired-up with Blueprint Beans, our IOC container of choice. Usage of Blueprint keeps OSGI APIs away from project code. IOC managed code is much easier to test.
+* __Blueprint__ - Bundles wired-up with Blueprint Beans -our IOC container of choice. Usage of Blueprint keeps OSGI APIs away from project code. IOC managed code is much easier to test.
 * __Configuration__ - Using the Configuration Admin of OSGI. Configurations are injected into the project classes via the Blueprint IOC. Multiple options exist and are highlighted
 
 Travis CI Build: https://travis-ci.org/pentaho-nbaker/karaf-examples
 
 ## What does it do?
-When activated a Swing window is shown which allows the retrival of the current asking 
-price for any stock symbol.
+When activated a Swing window is shown which allows the user to retrieve the current asking 
+price for any stock by symbol.
 
 ## Basic Architecture ##
-The Client UI is instantiated by Blueprint where it is also given reference to any IStockMarket implementations registered from "impl" bundle. There are currently two implementations: Yahoo and Google
+The Client UI is instantiated by Blueprint where it is also given reference to all IStockMarket implementations registered from "impl" bundles. There are currently two implementations: Yahoo and Google
 
 ---
 

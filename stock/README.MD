@@ -22,7 +22,7 @@ The Client UI is instantiated by Blueprint where it is also given reference to a
 * __impl__ : Implementations. Currently two: Yahoo and Google
 * __client__ : Swing-based UI working with the Stock Markets
 * __tests__ : Bundles are tested within a real Karaf container via PAX-Exam
-* __feature__ : Produces a Karaf Feature which allow the application to be deployed in any Karaf container
+* __feature__ : Produces a Karaf Feature by which the application to be deployed in any Karaf container
 * __assembly__ : Produces a Karaf assembly preconfigured with Stock application
 
 

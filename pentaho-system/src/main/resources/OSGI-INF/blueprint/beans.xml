@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.2.0"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xsi:schemaLocation="
+  http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+  ">
+
+  <!-- We inject two properties into this bean from outside OSGI -->
+
+  <bean id="pentahoSystemExample" class="org.pentaho.karaf.examples.pentahosystem.PentahoSystemExample" scope="singleton"
+        init-method="init" >
+    <!--
+      The value of this bean is from the main Spring ApplicationContext which is not "published". These beans are only
+      accessible by the programmatic PentahoSystem.get() call.
+
+      @see https://github.com/pentaho/pentaho-platform/blob/7.0.0.1-R/assembly/package-res/biserver/pentaho-solutions/system/pentahoObjects.spring.xml#L234
+    -->
+    <property name="mondrianCatalog">
+      <bean class="org.pentaho.platform.engine.core.system.PentahoSystem" factory-method="get">
+        <argument value="org.pentaho.platform.plugin.action.mondrian.catalog.IMondrianCatalogService" />
+      </bean>
+    </property>
+
+    <!--
+      This reference's value is a "published" bean from the main Spring ApplicationContext. Published beans are
+      available via OSGI natively.
+
+      @see https://github.com/pentaho/pentaho-platform/blob/7.0.0.1-R/assembly/package-res/biserver/pentaho-solutions/system/pentahoObjects.spring.xml#L153
+    -->
+    <property name="userRoleListService">
+      <reference interface="org.pentaho.platform.api.engine.IUserRoleListService" />
+    </property>
+
+  </bean>
+
+</blueprint>

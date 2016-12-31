@@ -3,7 +3,7 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
-    <groupId>pentaho.karaf.examples.stock</groupId>
+    <groupId>pentaho.karaf.examples</groupId>
     <artifactId>stock-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <relativePath>../</relativePath>
@@ -15,22 +15,22 @@
 
   <dependencies>
     <dependency>
-      <groupId>pentaho.karaf.examples.stock</groupId>
+      <groupId>pentaho.karaf.examples</groupId>
       <artifactId>api</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>pentaho.karaf.examples.stock</groupId>
+      <groupId>pentaho.karaf.examples</groupId>
       <artifactId>stock-google</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>pentaho.karaf.examples.stock</groupId>
+      <groupId>pentaho.karaf.examples</groupId>
       <artifactId>stock-yahoo</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>pentaho.karaf.examples.stock</groupId>
+      <groupId>pentaho.karaf.examples</groupId>
       <artifactId>client</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>

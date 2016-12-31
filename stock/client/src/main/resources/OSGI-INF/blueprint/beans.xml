@@ -27,11 +27,17 @@
     </cm:default-properties>
   </cm:property-placeholder>
 
+
+
+  <!-- Here we construct the main class of this bundle, which shows the Swing UI -->
   <bean id="stockMarket" class="org.pentaho.karaf.examples.stock.client.SwingStockQuoteClient" scope="singleton"
         init-method="init" destroy-method="destroy">
 
-    <!-- This managed-properties configuration injects properties into setters matching property values.
-         In our example here 'title' will be injected into the setTitle() method.
+    <!--
+         Here is the second way we can handle Configuration injection in Blueprint.
+
+         This managed-properties configuration injects properties into setters matching property values.
+         In our example here 'title' will be injected into the setTitle() method of our bean.
 
          The unique advantage to using this method is that as configuration values change they'll be re-injected
          into the bean instances dynamically.
@@ -41,7 +47,7 @@
     -->
     <cm:managed-properties persistent-id="pentaho.examples.stock" update-strategy="container-managed"/>
 
-    <argument ref="markets"/>
+    <argument ref="markets"/>                <!-- Our Impls List -->
     <argument value="${defaultMarket}"/>     <!-- Value injected by cm:property-placeholder instance above -->
 
   </bean>

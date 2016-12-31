@@ -6,12 +6,12 @@
   ">
 
   <!-- We inject two properties into this bean from outside OSGI -->
-
   <bean id="pentahoSystemExample" class="org.pentaho.karaf.examples.pentahosystem.PentahoSystemExample" scope="singleton"
         init-method="init" >
     <!--
-      The value of this bean is from the main Spring ApplicationContext which is not "published". These beans are only
-      accessible by the programmatic PentahoSystem.get() call.
+      mondrianCatalog is defined in the main Spring ApplicationContext which is not "published". These beans are only
+      accessible by the programmatic PentahoSystem.get() call. We can do that from Blueprint and prevent it's usage in
+      the class itself
 
       @see https://github.com/pentaho/pentaho-platform/blob/7.0.0.1-R/assembly/package-res/biserver/pentaho-solutions/system/pentahoObjects.spring.xml#L234
     -->
@@ -22,8 +22,10 @@
     </property>
 
     <!--
-      This reference's value is a "published" bean from the main Spring ApplicationContext. Published beans are
-      available via OSGI natively.
+      userRoleListService's value is a "published" bean from the main Spring ApplicationContext. Published beans are
+      available via OSGI natively so we'll use a normal blueprint reference.
+
+      Published beans can come from the main Spring ApplicationContext as well as any of the plugin's spring files.
 
       @see https://github.com/pentaho/pentaho-platform/blob/7.0.0.1-R/assembly/package-res/biserver/pentaho-solutions/system/pentahoObjects.spring.xml#L153
     -->

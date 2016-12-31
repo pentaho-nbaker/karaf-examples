@@ -24,7 +24,8 @@ public class PentahoSystemExample {
   public PentahoSystemExample() {
 
     /**
-     * Registered from Spring outside of OSGI. Bean wasn't published. This is the only way to get this kind of object
+     * Registered from Spring outside of OSGI. This bean isn't "published". As such PentahoSystem.get() is the only way
+     * to retrive this object.
      *
      * @see https://github.com/pentaho/pentaho-platform/blob/7.0.0.1-R/assembly/package-res/biserver/pentaho-solutions/system/pentahoObjects.spring.xml#L127
      * @see https://github.com/pentaho/pentaho-platform/blob/7.0.0.1-R/assembly/package-res/biserver/pentaho-solutions/system/repository.spring.xml#L179
@@ -59,6 +60,10 @@ public class PentahoSystemExample {
     this.userRoleListService = userRoleListService;
   }
 
+  /**
+   * init() is called by blueprint after this PentahoSystemExample object is constructed. We'll print out all fields
+   * to the log.
+   */
   public void init() {
 
     // Print all fields ( [ name ]: [ value of class name ] )
@@ -71,16 +76,15 @@ public class PentahoSystemExample {
     LoggerFactory.getLogger( getClass() ).error( output );
   }
 
+  /**
+   * This helper method has an inherent NPE
+   */
   private static String getClassName( Field f, Object o ) {
     try {
       return f.get( o ).getClass().getName();
     } catch ( IllegalAccessException e ) {
       return "";
     }
-  }
-
-  private String printClass( String name, Object obj ) {
-    return String.format( "\t%1$-25s%2$s\n", name, obj.getClass().getName() );
   }
 
 }

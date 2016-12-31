@@ -1,6 +1,6 @@
 # Karaf Examples - Pentaho System
 ## Introduction
-This Karaf Example shows how Pentaho has integrated OSGI into the legacy PentahoSystem. 
+This Karaf Example shows how Pentaho has integrated OSGI and the legacy PentahoSystem together to smooth the migration to OSGI. 
 
 Travis CI Build: https://travis-ci.org/pentaho-nbaker/karaf-examples
 
@@ -15,7 +15,7 @@ On initialization this class prints out it's fields and values to the logger.
 ---
 
 ## Important Files
-* [PentahoSystemExample.java](src/main/java/org/pentaho/karaf/examples/pentahosystem/PentahoSystemExample.java) : API Interface to the StockMarket
+* [PentahoSystemExample.java](src/main/java/org/pentaho/karaf/examples/pentahosystem/PentahoSystemExample.java) : One and only class.
 * [Blueprint XML](src/main/resources/OSGI-INF/blueprint/beans.xml) 
 
 ---
@@ -35,7 +35,7 @@ __Build with Maven__
 This bundle must be deployed into a Pentaho Server as it has dependencies on the Platform.
 
 ### Install Bundle manually into the Pentaho Server
-From the command-line execute the following. Note your port may be higher if other server are running.
+From the command-line execute the following. Note your port may be higher if other servers are running.
 Check your server logs if the connection fails.
 ```
 ssh admin@localhost -p 8802
@@ -53,13 +53,14 @@ You should see output in the tomcat/logs/catalina.out like the following:
 	iUnifiedRepository       org.pentaho.platform.repository2.unified.ExceptionLoggingDecorator
 ```
 
-Here the PentahoSystemExample bean has been constructed and all of it's Fileds are printed to the log
+Here the PentahoSystemExample bean has been constructed by our bundle and all of its Fileds have been printed to the log
 
 
 ## Developing and Debugging
 Since this is a new bundle there's no need to clear the it from Karaf Maven Repository. The easiest route
 is to employ the Karaf watch command. (You'll notice that we're using the bundle symbolic name instead of 
 the bundle ID. Either will work)
+
 1. From the SSH console execute `bundle:watch pentaho-system`
 
 ---
@@ -69,6 +70,7 @@ the bundle ID. Either will work)
 
 The example looks up ProxyUnwrapper from PentahoSystem. This can be looked up via the OSGI Service 
 Registry instead. 
+
 1. Modify the class to add a setter for the proxyUnwrapper field.
 2. Remove the lookup in the constructor
 3. Modify the Blueprint file to inject a <reference> to the ProxyUnwrapper implementation.

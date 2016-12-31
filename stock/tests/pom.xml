@@ -20,7 +20,7 @@
 
 
     <dependency>
-      <groupId>pentaho.karaf.examples.stock</groupId>
+      <groupId>pentaho.karaf.examples</groupId>
       <artifactId>api</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
@@ -32,7 +32,7 @@
     </dependency>
 
     <dependency>
-      <groupId>pentaho.karaf.examples.stock</groupId>
+      <groupId>pentaho.karaf.examples</groupId>
       <artifactId>stock-feature</artifactId>
       <type>xml</type>
       <classifier>features</classifier>
@@ -96,7 +96,7 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>pentaho.karaf.examples.stock</groupId>
+      <groupId>pentaho.karaf.examples</groupId>
       <artifactId>api</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>

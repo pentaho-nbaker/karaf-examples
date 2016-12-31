@@ -43,7 +43,7 @@
     </dependency>
 
     <dependency>
-      <groupId>pentaho.karaf.examples.stock</groupId>
+      <groupId>pentaho.karaf.examples</groupId>
       <artifactId>stock-feature</artifactId>
       <type>xml</type>
       <classifier>features</classifier>
@@ -62,7 +62,7 @@
     <!--<scope>compile</scope>-->
     <!--</dependency>-->
     <!--<dependency>-->
-    <!--<groupId>pentaho.karaf.examples.stock</groupId>-->
+    <!--<groupId>pentaho.karaf.examples</groupId>-->
     <!--<artifactId>stock-feature</artifactId>-->
     <!--<type>xml</type>-->
     <!--<classifier>features</classifier>-->

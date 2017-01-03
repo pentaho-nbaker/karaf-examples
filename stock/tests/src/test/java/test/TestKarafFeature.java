@@ -55,7 +55,7 @@ public class TestKarafFeature {
       .type( "xml" );
 
     MavenUrlReference ourRepo = maven()
-      .groupId( "pentaho.karaf.examples.stock" )
+      .groupId( "pentaho.karaf.examples" )
       .artifactId( "stock-feature" )
       .versionAsInProject()
       .classifier( "features" )

@@ -19,4 +19,14 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
+
+  <repositories>
+    <repository>
+      <id>pentaho.nexus</id>
+      <name>Pentaho Nexus</name>
+      <snapshots><enabled>true</enabled></snapshots>
+      <url>http://nexus.pentaho.org/content/groups/omni</url>
+    </repository>
+  </repositories>
+
 </project>

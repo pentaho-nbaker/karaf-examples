@@ -63,7 +63,7 @@ the Sock feature can be deployed into any Karaf container.
 #### Install Feature
 Execute the following in the Karaf Shell
 ```
-feature:repo-add mvn:pentaho.karaf.examples.stock/stock-feature/1.0-SNAPSHOT/xml/features
+feature:repo-add mvn:pentaho.karaf.examples/stock-feature/1.0-SNAPSHOT/xml/features
 feature:install stock-feature
 ```
 
